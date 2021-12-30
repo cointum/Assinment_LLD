@@ -41,7 +41,7 @@ func ReadFileAsync(path string, resp chan<- FileResponse) {
 		status: err,
 	}
 	resp <- f
-
+	println(err.Error())
 }
 
 func welcome(w http.ResponseWriter, r *http.Request) {
@@ -84,7 +84,7 @@ func welcome(w http.ResponseWriter, r *http.Request) {
 func main() {
 	ExamineFiles()
 	fmt.Println(files)
-	http.Handle("/files", http.FileServer(http.Dir("./views")))
+	//http.Handle("/files", http.FileServer(http.Dir("./views")))
 	http.HandleFunc("/", welcome)
-	http.ListenAndServe(":5000", nil)
+	http.ListenAndServe(":9000", nil)
 }
